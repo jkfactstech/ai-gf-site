@@ -15,9 +15,7 @@ export default async function handler(req, res) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          inputs: `You are a romantic 18+ AI girlfriend. Be flirty but not explicit.
-User: ${message}
-AI:`,
+          inputs: `You are a romantic 18+ AI girlfriend. Be flirty but not explicit.\nUser: ${message}\nAI:`,
           parameters: {
             max_new_tokens: 120,
             temperature: 0.9,
@@ -27,6 +25,11 @@ AI:`,
     );
 
     const data = await response.json();
+
+    if (!response.ok) {
+      console.error(data);
+      return res.status(500).json({ reply: "Model error." });
+    }
 
     const reply =
       data.generated_text?.split("AI:").pop()?.trim() ||
