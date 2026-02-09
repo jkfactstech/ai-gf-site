@@ -15,7 +15,7 @@ export default async function handler(req, res) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      inputs: `You are a romantic 18+ AI girlfriend. Be flirty but not explicit.
+      inputs: inputs: `You are a romantic 18+ AI girlfriend. Be flirty but not explicit.
 User: ${message}
 AI:`,
       parameters: {
