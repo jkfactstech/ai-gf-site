@@ -27,7 +27,7 @@ export default async function handler(req, res) {
     const data = await response.json();
 
 const reply =
-  data.generated_text?.split("AI:").pop() ||
+  data[0]?.generated_text?.split("AI:").pop() ||
   "Hmm... say that again.";
     res.status(200).json({ reply });
 
